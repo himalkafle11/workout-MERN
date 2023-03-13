@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import WorkoutDetails from "../components/WorkoutDetails";
 import WorkoutForm from "../components/WorkoutForm";
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 
 const Homepage = () => {
-  const [workouts, setWorkouts] = useState(null);
+  const { workouts, dispatch } = useWorkoutsContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -15,7 +16,7 @@ const Homepage = () => {
         const json = await response.json();
 
         if (response.ok) {
-          setWorkouts(json);
+          dispatch({ type: "SET_WORKOUTS", payload: json });
           setError(null);
         } else {
           setError(json.message);
