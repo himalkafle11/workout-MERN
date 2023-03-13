@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <nav className="md:p-8 p-4 bg-gray-900 text-white">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
@@ -10,14 +11,12 @@ const Navbar = () => {
             WorkoutBuddy
           </span>
         </Link>
-        <div className="flex gap-4">
-          <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-            Sign in
-          </button>
-          <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-            Sign up
-          </button>
-        </div>
+        <button
+          onClick={() => navigate("/")}
+          className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+        >
+          Welcome
+        </button>
       </div>
     </nav>
   );
