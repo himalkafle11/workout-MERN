@@ -10,7 +10,7 @@ const WorkoutDetails = ({ workout }) => {
     .toString()
     .padStart(2, "0")}`;
   return (
-    <div className="flex flex-col border bg-white w-9/12 shadow-lg p-4">
+    <div className="flex flex-col border bg-white shadow-lg p-4">
       <h4 className="text-blue-700 font-bold uppercase">{workout.title}</h4>
       <div className="text-sm">
         <p>
@@ -20,7 +20,7 @@ const WorkoutDetails = ({ workout }) => {
           {workout.load}
         </p>
         <p>
-          <strong>Reps : </strong>
+          <strong>Reps :</strong>
           {workout.reps}
         </p>
         <p></p>
