@@ -8,12 +8,41 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
+  const [error, setError] = useState(null);
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    const user = { name, email, password, confPassword };
+
+    const response = await fetch("/auth/users", {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      setError(json.error);
+    }
+
+    if (response.ok) {
+      setName("");
+      setEmail("");
+      setPassword("");
+      setConfPassword("");
+      setError(null);
+    }
+  };
 
   return (
     <div className="flex justify-center mt-14 px-4">
       <div className="w-full max-w-xl p-8 bg-gray-300 shadow-xl rounded-lg flex flex-col gap-6">
         <h1 className="text-xl">Register using the following form...</h1>
-        <form>
+        <form onSubmit={handleRegister}>
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -27,7 +56,7 @@ const Register = () => {
               type="text"
               placeholder="Name"
               autoComplete="off"
-              required
+              // required
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -46,7 +75,7 @@ const Register = () => {
               type="email"
               placeholder="Email"
               autoComplete="off"
-              required
+              // required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -65,7 +94,7 @@ const Register = () => {
               type="password"
               placeholder="******************"
               autoComplete="off"
-              required
+              // required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -83,7 +112,7 @@ const Register = () => {
               type="password"
               placeholder="******************"
               autoComplete="off"
-              required
+              // required
               value={confPassword}
               onChange={(e) => setConfPassword(e.target.value)}
             />
@@ -105,6 +134,11 @@ const Register = () => {
               </span>
             </p>
           </div>
+          {error && (
+            <div className="mt-4 text-red-900 shadow appearance-none border bg-red-300 rounded w-full py-2 px-3 focus:outline-none focus:shadow-outline">
+              {error}
+            </div>
+          )}
         </form>
       </div>
     </div>
