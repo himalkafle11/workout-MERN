@@ -8,6 +8,7 @@ const WorkoutForm = () => {
   const [load, setLoad] = useState("");
   const [reps, setReps] = useState("");
   const [error, setError] = useState(null);
+  const [emptyFields, setEmptyFields] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,6 +27,7 @@ const WorkoutForm = () => {
 
     if (!response.ok) {
       setError(json.error);
+      setEmptyFields(json.emptyFields);
     }
 
     if (response.ok) {
@@ -33,6 +35,7 @@ const WorkoutForm = () => {
       setLoad("");
       setReps("");
       setError(null);
+      setEmptyFields([]);
       console.log("new workout added", json);
       dispatch({ type: "CREATE_WORKOUTS", payload: json });
     }
@@ -49,11 +52,15 @@ const WorkoutForm = () => {
       </div>
 
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+        <label className="block text-gray-700 text-sm font-bold mb-2 ">
           Exercise Title:
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className={
+            emptyFields.includes("title")
+              ? "shadow appearance-none border border-red-600 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              : "shadow appearance-none border border-white rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          }
           type="text"
           onChange={(e) => setTitle(e.target.value)}
           value={title}
@@ -65,7 +72,11 @@ const WorkoutForm = () => {
           Load <i>(in kg)</i> :
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className={
+            emptyFields.includes("load")
+              ? "shadow appearance-none border border-red-600 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              : "shadow appearance-none border border-white rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          }
           type="number"
           onChange={(e) => setLoad(e.target.value)}
           value={load}
@@ -77,7 +88,11 @@ const WorkoutForm = () => {
           Reps <i>(in number)</i> :
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className={
+            emptyFields.includes("reps")
+              ? "shadow appearance-none border border-red-600 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              : "shadow appearance-none border border-white rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          }
           type="number"
           onChange={(e) => setReps(e.target.value)}
           value={reps}
@@ -90,7 +105,11 @@ const WorkoutForm = () => {
       >
         Add Workout
       </button>
-      {error && <div>{error}</div>}
+      {error && (
+        <div className="mt-4 text-red-900 shadow appearance-none border bg-red-300 rounded w-full py-2 px-3 focus:outline-none focus:shadow-outline">
+          {error}
+        </div>
+      )}
     </form>
   );
 };
