@@ -4,7 +4,7 @@ import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutsContext();
 
-  const handleClick = async () => {
+  const handleDelete = async () => {
     const response = await fetch("/api/workouts/" + workout._id, {
       method: "DELETE",
     });
@@ -28,10 +28,10 @@ const WorkoutDetails = ({ workout }) => {
 
   return (
     <div className="flex flex-col border bg-white shadow-lg p-4">
-      <h4 className="text-blue-700 font-extrabold uppercase">
+      <h4 className="text-blue-700 font-extrabold uppercase mb-2">
         {workout.title}
       </h4>
-      <div className="text-sm">
+      <div className="text-sm mb-4 ml-4">
         <p>
           <strong>
             Load <i>(kg)</i> :
@@ -48,7 +48,12 @@ const WorkoutDetails = ({ workout }) => {
           {formattedDate()}
         </p>
       </div>
-      <span onClick={handleClick}>Delete</span>
+      <span
+        className="border border-red-900 w-fit px-6 pointer bg-red-200 cursor-pointer ml-4"
+        onClick={handleDelete}
+      >
+        Delete
+      </span>
     </div>
   );
 };

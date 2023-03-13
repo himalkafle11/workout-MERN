@@ -45,7 +45,7 @@ const Homepage = () => {
 
   return (
     <div className="bg-gray-300 ">
-      <div className="md:flex md:flex-row flex flex-col gap-4 md:p-8 p-4 m-4 ">
+      <div className="md:flex md:flex-row flex flex-col gap-4 md:p-8 p-4">
         <div className="flex flex-col flex-1 gap-8">
           {workouts &&
             workouts.map((workout) => (
