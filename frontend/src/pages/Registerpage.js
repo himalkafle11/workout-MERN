@@ -36,7 +36,7 @@ const Register = () => {
 
       setTimeout(() => {
         setSuccess(false);
-      }, 4000);
+      }, 5000);
     } else if (data.errors) {
       setError(data.errors[0].msg);
       setSuccess(false);
@@ -107,7 +107,7 @@ const Register = () => {
               />
             </div>
 
-            <div className="mb-6">
+            <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
                 Password
               </label>

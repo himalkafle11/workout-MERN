@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const validator = require("validator");
 const mongoose = require("mongoose");
 
 //create a new user
@@ -15,6 +16,14 @@ const createUsers = async (req, res) => {
     const emailExists = await User.findOne({ email });
     if (emailExists) {
       errors.push({ msg: "Email already exists!" });
+    }
+
+    if (!validator.isEmail(email)) {
+      errors.push({ msg: "Email is not valid!" });
+    }
+
+    if (password.length < 6) {
+      errors.push({ msg: "Password's length must be at lease six!" });
     }
 
     if (password !== confPassword) {
