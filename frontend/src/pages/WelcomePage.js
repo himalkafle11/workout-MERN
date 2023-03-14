@@ -25,18 +25,12 @@ const WelcomePage = () => {
           So start using our website today and take control of your notes,
           workouts, and personal data like never before!
         </p>
-        <div className="flex space-x-4 mt-8">
+        <div className="mt-8">
           <button
             onClick={() => navigate("/loginpage")}
             className="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-600"
           >
-            Sign In
-          </button>
-          <button
-            onClick={() => navigate("/registerpage")}
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500"
-          >
-            Sign Up
+            Explore more
           </button>
         </div>
       </div>
