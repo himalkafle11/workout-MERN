@@ -15,35 +15,44 @@ const Navbar = () => {
   return (
     <nav className="md:p-8 p-4 bg-gray-900 text-white">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
-        <Link to="/">
-          <span className="self-center text-xl font-semibold whitespace-nowrap">
-            WorkoutBuddy
-          </span>
-        </Link>
         {user && (
-          <div>
-            <span className="mr-2 text-white">{user.user.name}</span>
-            <button
-              onClick={logout}
-              className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-            >
-              Log out
-            </button>
-          </div>
+          <>
+            <span className="self-center text-xl font-semibold whitespace-nowrap">
+              WorkoutBuddy
+            </span>
+            <div>
+              <span className="mr-2 text-white">{user.user.name}</span>
+              <Link to="/">
+                <button
+                  onClick={logout}
+                  className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                >
+                  Log out
+                </button>
+              </Link>
+            </div>
+          </>
         )}
         {!user && (
-          <div className="flex gap-4">
-            <Link to="/loginpage">
-              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                Log in
-              </button>
+          <>
+            <Link to="/">
+              <span className="self-center text-xl font-semibold whitespace-nowrap">
+                WorkoutBuddy
+              </span>
             </Link>
-            <Link to="/registerpage">
-              <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                Sign up
-              </button>
-            </Link>
-          </div>
+            <div className="flex gap-4">
+              <Link to="/loginpage">
+                <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                  Log in
+                </button>
+              </Link>
+              <Link to="/registerpage">
+                <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                  Sign up
+                </button>
+              </Link>
+            </div>
+          </>
         )}
       </div>
     </nav>

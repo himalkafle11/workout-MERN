@@ -39,10 +39,12 @@ const Register = () => {
       setConfPassword("");
       setError(null);
       setSuccess(true);
-
       setTimeout(() => {
         setSuccess(false);
-      }, 5000);
+      }, 2000);
+      setTimeout(() => {
+        window.location.href = "/homepage";
+      }, 6000);
     } else if (data.errors) {
       setError(data.errors[0].msg);
       setSuccess(false);

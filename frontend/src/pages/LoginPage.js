@@ -33,6 +33,7 @@ const LoginPage = () => {
       setEmail("");
       setPassword("");
       setError(null);
+      window.location.href = "/homepage";
     } else if (data.errors) {
       setError(data.errors[0].msg);
     } else {
